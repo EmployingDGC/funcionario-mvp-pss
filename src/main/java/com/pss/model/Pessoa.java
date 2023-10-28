@@ -6,14 +6,22 @@ public class Pessoa {
     private String nome;
 
     public Pessoa(String nome) {
+        this.setNome(nome);
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
         if (nome == null) {
             throw new ObjectNotNullException("Nome não pode ser nulo");
         }
 
         this.nome = nome.trim().toLowerCase();
-    }
 
-    public String getNome() {
-        return this.nome;
+        if (this.nome.equals("")) {
+            throw new ObjectNotNullException("Nome não pode ser vazio");
+        }
     }
 }
