@@ -8,13 +8,13 @@ O objetivo deste exercício é desenvolver um sistema em Java para gerenciar fun
 ## Requisitos
 
 - [ ] Este exercício deve ser realizado em dupla
-- [ ] Configuração do Projeto: O projeto deve ser um projeto Maven e deve utilizar a versão 17 do Java.
-- [ ] Model: Crie uma classe Funcionario para representar um funcionário e uma classe FuncionarioCollection para manter os registros de funcionários em memória.
-- [ ] View: Utilize Swing para criar as seguintes interfaces gráficas:
-- [ ] Tela Principal: Interface com um menu que permite o acesso às opções de inclusão e consulta de funcionários.
-- [ ] Tela de Inclusão: Interface que permite a entrada de dados para incluir um novo funcionário.
-- [ ] Tela de Consulta: Interface com um JTable que lista os funcionários cadastrados.
-- [ ] Tela de Visualização: Utilize a mesma interface da tela de inclusão, mas prepare-a para apenas visualizar registros, sem permitir modificações.
+- [x] Configuração do Projeto: O projeto deve ser um projeto Maven e deve utilizar a versão 17 do Java.
+- [x] Model: Crie uma classe Funcionario para representar um funcionário e uma classe FuncionarioCollection para manter os registros de funcionários em memória.
+- [ ] Views: Utilize Swing para criar as seguintes interfaces gráficas:
+  - [x] Tela Principal: Interface com um menu que permite o acesso às opções de inclusão e consulta de funcionários.
+  - [ ] Tela de Inclusão: Interface que permite a entrada de dados para incluir um novo funcionário.
+  - [ ] Tela de Consulta: Interface com um JTable que lista os funcionários cadastrados.
+  - [x] Tela de Visualização: Utilize a mesma interface da tela de inclusão, mas prepare-a para apenas visualizar registros, sem permitir modificações.
 - [ ] Presenter: Desenvolva classes Presenter correspondentes para gerenciar a lógica de negócio para cada uma das telas.
 - [ ] Demais requisitos de entrega estão em anexo, não é necessário fazer o Relatório Técnico.
 
