@@ -12,6 +12,8 @@ public class PrincipalView extends JFrame {
     private PainelBaseView painelAtual;
     private MenuView painelMenu;
     private ListaFuncionariosView painelListaFuncionarios;
+    private InformacoesFuncionarioView painelCadastrarFuncionario;
+    private InformacoesFuncionarioView painelVerFuncionario;
 
     public PrincipalView() {
         this.setTitle("Gestão de Funcionários");
@@ -30,6 +32,8 @@ public class PrincipalView extends JFrame {
 
         this.painelMenu = new MenuView(this);
         this.painelListaFuncionarios = new ListaFuncionariosView(this);
+        this.painelCadastrarFuncionario = new InformacoesFuncionarioView(this);
+        this.painelVerFuncionario = new InformacoesFuncionarioView(this);
 
         this.vaParaPainelMenu();
 
@@ -38,6 +42,14 @@ public class PrincipalView extends JFrame {
     
     public void vaParaPainelMenu() {
         this.vaPara(this.painelMenu);
+    }
+
+    public void vaParaPainelCadastrarFuncionario() {
+        this.vaPara(this.painelCadastrarFuncionario);
+    }
+
+    public void vaParaPainelVerFuncionario() {
+        this.vaPara(this.painelVerFuncionario);
     }
 
     public void vaParaPainelListaFuncionarios() {
@@ -49,6 +61,7 @@ public class PrincipalView extends JFrame {
         PrincipalView thisObject = this;
         
         return new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 thisObject.vaParaPainelMenu();
             }
