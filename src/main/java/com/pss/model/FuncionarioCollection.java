@@ -38,6 +38,18 @@ public class FuncionarioCollection {
         this.funcionarios.add(e);
     }
 
+    public void remove(int i) {
+        this.funcionarios.remove(i);
+    }
+
+    public void remove(Funcionario f) {
+        this.funcionarios.remove(f);
+    }
+
+    public Funcionario get(int i) {
+        return this.funcionarios.get(i);
+    }
+
     public ArrayList<Funcionario> getFuncionarios() {
         return this.funcionarios;
     }
