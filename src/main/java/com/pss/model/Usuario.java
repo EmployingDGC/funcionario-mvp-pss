@@ -40,8 +40,12 @@ public class Usuario extends Pessoa {
         }
     }
 
-    public String getSenha() {
-        return "***";
+    public String getSenha(boolean escondido) {
+        if (escondido) {
+            return "***";
+        }
+
+        return this.senha;
     }
     
     public void setSenha(String senha) {
