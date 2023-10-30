@@ -1,7 +1,6 @@
 package com.pss.view;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 import java.awt.Insets;
 import java.awt.GridBagLayout;
@@ -19,9 +18,6 @@ public class MenuView extends PainelBaseView {
         JButton botaoConsultar = new JButton("Consultar Funcionário");
         botaoConsultar.addActionListener(this.clickBotaoConsultar());
 
-        JButton botaoExcluir = new JButton("Excluir Funcionário");
-        botaoExcluir.addActionListener(this.clickBotaoExcluir());
-
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
@@ -31,17 +27,15 @@ public class MenuView extends PainelBaseView {
 
         gbc.gridy += 1;
         this.getPainel().add(botaoConsultar, gbc);
-
-        gbc.gridy += 1;
-        this.getPainel().add(botaoExcluir, gbc);
     }
 
     private ActionListener clickBotaoCadastrar() {
-        // MenuView thisObject = this;
+        MenuView thisObject = this;
         
         return new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Cadastrar Funcionário.");
+                thisObject.getTelaPrincipal().vaParaPainelCadastrarFuncionario();
             }
         };
     }
@@ -50,18 +44,9 @@ public class MenuView extends PainelBaseView {
         MenuView thisObject = this;
 
         return new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 thisObject.getTelaPrincipal().vaParaPainelListaFuncionarios();
-            }
-        };
-    }
-
-    private ActionListener clickBotaoExcluir() {
-        // MenuView thisObject = this;
-        
-        return new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Excluir Funcionário.");
             }
         };
     }
