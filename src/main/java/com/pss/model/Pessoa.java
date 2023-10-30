@@ -24,4 +24,11 @@ public class Pessoa {
             throw new ObjectNotNullException("Nome não pode ser vazio");
         }
     }
+
+    @Override
+    public String toString() {
+        return (
+            "Nome: " + this.nome
+        );
+    }
 }
