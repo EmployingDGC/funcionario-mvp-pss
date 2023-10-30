@@ -20,6 +20,7 @@ public final class App {
                 "Davi Guizani",
                 "dguizani",
                 "12345678",
+                "Analista de Dados",
                 1000.0
             )
         );
@@ -29,6 +30,7 @@ public final class App {
                 "Jeniffer",
                 "koi",
                 "12345678",
+                "Streamer",
                 1000.0
             )
         );
@@ -38,6 +40,7 @@ public final class App {
                 "Guilherme",
                 "gui",
                 "12345678",
+                "Analista de Negócios",
                 1000.0
             )
         );
