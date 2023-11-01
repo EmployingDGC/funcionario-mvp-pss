@@ -1,8 +1,8 @@
 package com.pss;
 
+import com.pss.collection.FuncionarioCollection;
 import com.pss.model.Funcionario;
-import com.pss.model.FuncionarioCollection;
-import com.pss.view.PrincipalView;
+import com.pss.presenter.PrincipalPresenter;
 
 /**
  * Hello world!
@@ -13,7 +13,7 @@ public final class App {
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
-        FuncionarioCollection funcionarios = FuncionarioCollection.getInstance();
+        FuncionarioCollection funcionarios = FuncionarioCollection.getInstancia();
 
         funcionarios.add(
             new Funcionario(
@@ -45,7 +45,7 @@ public final class App {
             )
         );
 
-        PrincipalView principalView = new PrincipalView();
-        principalView.setVisible(true);
+        PrincipalPresenter principalView = new PrincipalPresenter();
+        principalView.getJanela().setVisible(true);
     }
 }

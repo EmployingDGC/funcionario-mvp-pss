@@ -5,49 +5,33 @@ import javax.swing.JButton;
 import java.awt.Insets;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class MenuView extends PainelBaseView {
-    public MenuView(PrincipalView telaPrincipal) {
-        super(telaPrincipal, new GridBagLayout());
+public class MenuView extends BaseView {
+    private JButton botaoCadastrar;
+    private JButton botaoConsultar;
 
-        JButton botaoCadastrar = new JButton("Cadastrar Funcionário");
-        botaoCadastrar.addActionListener(this.clickBotaoCadastrar());
+    public MenuView() {
+        super(new GridBagLayout());
 
-        JButton botaoConsultar = new JButton("Consultar Funcionário");
-        botaoConsultar.addActionListener(this.clickBotaoConsultar());
+        this.botaoCadastrar = new JButton("Cadastrar Funcionário");
+        this.botaoConsultar = new JButton("Consultar Funcionário");
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.gridx = 0;
 
         gbc.gridy = 0;
-        this.getPainel().add(botaoCadastrar, gbc);
+        this.add(botaoCadastrar, gbc);
 
         gbc.gridy += 1;
-        this.getPainel().add(botaoConsultar, gbc);
+        this.add(botaoConsultar, gbc);
     }
 
-    private ActionListener clickBotaoCadastrar() {
-        MenuView thisObject = this;
-        
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                thisObject.getTelaPrincipal().vaParaPainelCadastrarFuncionario();
-            }
-        };
+    public JButton getBotaoCadastrar() {
+        return this.botaoCadastrar;
     }
 
-    private ActionListener clickBotaoConsultar() {
-        MenuView thisObject = this;
-
-        return new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                thisObject.getTelaPrincipal().vaParaPainelListaFuncionarios();
-            }
-        };
+    public JButton getBotaoConsultar() {
+        return this.botaoConsultar;
     }
 }

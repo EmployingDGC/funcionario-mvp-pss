@@ -13,10 +13,11 @@ public class Usuario extends Pessoa {
         this.setSenha(senha);
     }
 
-    public boolean equals(Usuario usuario) {
+    public boolean equals(Usuario u) {
         return (
-            usuario.login.equals(this.login)
-            && usuario.senha.equals(this.senha)
+            super.equals(u)
+            && u.login.equals(this.login)
+            && u.senha.equals(this.senha)
         );
     }
 

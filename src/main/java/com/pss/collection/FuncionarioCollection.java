@@ -1,11 +1,13 @@
-package com.pss.model;
+package com.pss.collection;
 
 import java.util.ArrayList;
 
+import com.pss.error.DuplicatedLoginException;
 import com.pss.error.InstanceNotFoundException;
+import com.pss.model.Funcionario;
 
 public class FuncionarioCollection {
-    private static FuncionarioCollection instance;
+    private static FuncionarioCollection instancia;
 
     private ArrayList<Funcionario> funcionarios;
 
@@ -20,22 +22,31 @@ public class FuncionarioCollection {
     }
     
     public static boolean hasInstance() {
-        return instance != null;
+        return instancia != null;
     }
 
-    public static final FuncionarioCollection getInstance() {
+    public static FuncionarioCollection getInstancia() {
         if (!hasInstance()) {
-            instance = new FuncionarioCollection();
-            instance.funcionarios = new ArrayList<Funcionario>();
+            instancia = new FuncionarioCollection();
+            instancia.funcionarios = new ArrayList<Funcionario>();
         }
 
-        return instance;
+        return instancia;
     }
 
-    public void add(Funcionario e) {
+    public void add(Funcionario f) {
         this.throwInstanceNotFoundException();
 
-        this.funcionarios.add(e);
+        if (this.get(f.getLogin()) != null) {
+            throw new DuplicatedLoginException(
+                String.format(
+                    "Login '%s' Já existe",
+                    f.getLogin()
+                )
+            );
+        }
+        
+        this.funcionarios.add(f);
     }
 
     public void remove(int i) {
@@ -48,6 +59,16 @@ public class FuncionarioCollection {
 
     public Funcionario get(int i) {
         return this.funcionarios.get(i);
+    }
+
+    public Funcionario get(String login) {
+        for (Funcionario f: this.funcionarios) {
+            if (f.getLogin().equals(login)) {
+                return f;
+            }
+        }
+
+        return null;
     }
 
     public ArrayList<Funcionario> getFuncionarios() {

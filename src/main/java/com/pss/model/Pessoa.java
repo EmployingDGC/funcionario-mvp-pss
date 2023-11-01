@@ -25,6 +25,13 @@ public class Pessoa {
         }
     }
 
+    public boolean equals(Pessoa p) {
+        return (
+            p != null
+            && this.nome.equals(p.nome)
+        );
+    }
+
     @Override
     public String toString() {
         return (
