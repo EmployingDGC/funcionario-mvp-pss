@@ -2,11 +2,14 @@ package com.pss.presenter;
 
 import com.pss.model.Funcionario;
 import com.pss.view.ListarFuncionariosView;
+
 import com.pss.collection.FuncionarioCollection;
 
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -19,6 +22,9 @@ public class ListarFuncionariosPresenter extends BasePresenter {
         this.getFilhoView().getBotaoEditar().addActionListener(this.clickBotaoEditar());
         this.getFilhoView().getBotaoVisualizar().addActionListener(this.clickBotaoVisualizar());
         this.getFilhoView().getBotaoExcluir().addActionListener(this.clickBotaoExcluir());
+        this.getFilhoView().getBotaoPesquisar().addActionListener(this.clickBotaoPesquisar());
+
+        this.getFilhoView().getCampoPesquisa().addKeyListener(this.pesquisarEnter());
     }
 
     @Override
@@ -108,6 +114,56 @@ public class ListarFuncionariosPresenter extends BasePresenter {
         };
     }
 
+    private final void filtrarFuncionarios() {
+        ArrayList<Funcionario> funcionarios = FuncionarioCollection.getInstancia().getFuncionarios();
+        ArrayList<Funcionario> funcionariosFiltrados = new ArrayList<>();
+
+        String filtro = (
+            String.format(
+                ".*%s.*",
+                this.getFilhoView().getCampoPesquisa().getText().trim().toLowerCase()
+            )
+        );
+
+        for (Funcionario f : funcionarios) {
+            if ((f.getNome() + f.getCargo()).matches(filtro)) {
+                funcionariosFiltrados.add(f);
+            }
+        }
+
+        this.atualizarTabela(funcionariosFiltrados);
+    }
+
+    private final ActionListener clickBotaoPesquisar() {
+        ListarFuncionariosPresenter thisObject = this;
+        
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                thisObject.filtrarFuncionarios();
+            }
+        };
+    }
+
+    private final KeyListener pesquisarEnter() {
+        ListarFuncionariosPresenter thisObject = this;
+        
+        return new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    thisObject.filtrarFuncionarios();
+                }
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        };
+    }
+
     public void limparTabela() {
         DefaultTableModel dtm = this.getFilhoView().getTabelaModel();
 
@@ -118,16 +174,19 @@ public class ListarFuncionariosPresenter extends BasePresenter {
         this.getPrincipalPresenter().getJanela().revalidate();
     }
 
-    public void atualizarTabela() {
+    public void atualizarTabela(ArrayList<Funcionario> funcionarios) {
         DefaultTableModel dtm = this.getFilhoView().getTabelaModel();
-        FuncionarioCollection funcionarios = FuncionarioCollection.getInstancia();
+
+        if (funcionarios == null) {
+            funcionarios = FuncionarioCollection.getInstancia().getFuncionarios();
+        }
         
         if (dtm.getRowCount() > 0) {
             this.limparTabela();
         }
         
         Integer i = 0;
-        for (Funcionario f : funcionarios.getFuncionarios()) {
+        for (Funcionario f : funcionarios) {
             Vector<Object> rowData = new Vector<>(dtm.getColumnCount());
             
             rowData.add(i + 1);
