@@ -75,7 +75,7 @@ public class PrincipalPresenter extends BasePresenter {
     
     public void vaParaConsultarFuncionarios() {
         ListarFuncionariosPresenter lfp = this.listarFuncionariosPresenter;
-        lfp.atualizarTabela();
+        lfp.atualizarTabela(null);
         this.vaPara(lfp.getFilhoView());
     }
 
