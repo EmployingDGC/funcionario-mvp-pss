@@ -53,9 +53,6 @@ public class ListarFuncionariosView extends BaseView {
         botoesPanel.add(botaoExcluir);
 
         this.add(botoesPanel, BorderLayout.SOUTH);
-
-        this.colunasModel.getColumn(0).setPreferredWidth(5);
-        // this.tabela.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
     }
 
     public JTable getTabela() {
